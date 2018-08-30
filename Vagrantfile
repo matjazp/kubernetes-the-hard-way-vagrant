@@ -3,10 +3,14 @@
 
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/bionic64"
+  
+  
 
   config.vm.provider "virtualbox" do |vb|
     vb.memory = "512"
     vb.customize ["modifyvm", :id, "--audio", "none"]
+    vb.customize [ "modifyvm", :id, "--uartmode1", "disconnected"]
+    vb.linked_clone = true
   end
 
   # must be at the top
